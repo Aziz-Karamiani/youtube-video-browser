@@ -1,11 +1,11 @@
 <template>
   <div>
-    It Works!.
+    <h3 class="text-2xl font-bold text-blue-800">It Works!.</h3>
   </div>
 </template>
 
 <script>
-
+import '@/assets/tailwind.css';
 export default {
   name: 'App',
   components: {}
