@@ -1,6 +1,6 @@
 <template>
   <div class="w-full">
-    <search-box></search-box>
+    <search-box @termChanged="termChanged"></search-box>
   </div>
 </template>
 
@@ -12,6 +12,11 @@ export default {
   name: 'App',
   components: {
     SearchBox
+  },
+  methods: {
+    termChanged(value) {
+      console.log(value);
+    }
   }
 }
 </script>

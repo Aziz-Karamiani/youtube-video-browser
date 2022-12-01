@@ -21,7 +21,7 @@ export default {
   },
   methods: {
     search(event) {
-      this.keyword = event.target.value;
+      this.$emit('termChanged', event.target.value)
     }
   }
 }
