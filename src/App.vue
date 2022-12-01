@@ -1,24 +1,20 @@
 <template>
-  <div>
-    <h3 class="text-2xl font-bold text-blue-800">It Works!.</h3>
+  <div class="w-full">
+    <search-box></search-box>
   </div>
 </template>
 
 <script>
 import '@/assets/tailwind.css';
+import SearchBox from './components/Search.vue'
+
 export default {
   name: 'App',
-  components: {}
+  components: {
+    SearchBox
+  }
 }
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
 </style>
