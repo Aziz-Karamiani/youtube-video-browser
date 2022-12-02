@@ -6,7 +6,10 @@
 
 <script>
 import '@/assets/tailwind.css';
-import SearchBox from './components/Search.vue'
+import SearchBox from './components/Search.vue';
+import axios from "axios";
+
+const YOUTUBE_API_KEY = process.env.VUE_APP_API_KEY;
 
 export default {
   name: 'App',
@@ -15,7 +18,18 @@ export default {
   },
   methods: {
     termChanged(value) {
-      console.log(value);
+      axios
+          .get('https://www.googleapis.com/youtube/v3/search', {
+            params: {
+              key: YOUTUBE_API_KEY,
+              type: 'video',
+              part: 'snippet',
+              q: value
+            }
+          })
+          .then(response => {
+            console.log(response.data.items);
+          });
     }
   }
 }
