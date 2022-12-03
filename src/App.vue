@@ -1,7 +1,12 @@
 <template>
   <div class="w-full">
     <search-box @termChanged="termChanged"></search-box>
-    <VideoList :videos="videos"></VideoList>
+    <div class="container mx-auto flex justify-center mt-3 w-full">
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-2 md:gap-4 lg:gap-6 w-full">
+        <div class="text-green-500 text-lg font-bold rounded-lg col-span-8">Video Details</div>
+        <VideoList :videos="videos" @OnVideoSelect="videoSelect"></VideoList>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -21,7 +26,8 @@ export default {
   },
   data() {
     return {
-      videos: []
+      videos: [],
+      selectedVideo: null
     }
   },
   methods: {
@@ -38,6 +44,10 @@ export default {
           .then(response => {
             this.videos = response.data.items;
           });
+    },
+
+    videoSelect(video) {
+      this.selectedVideo = video;
     }
   }
 }
