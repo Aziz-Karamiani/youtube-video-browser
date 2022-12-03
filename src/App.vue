@@ -1,12 +1,14 @@
 <template>
   <div class="w-full">
     <search-box @termChanged="termChanged"></search-box>
+    <VideoList :videos="videos"></VideoList>
   </div>
 </template>
 
 <script>
 import '@/assets/tailwind.css';
 import SearchBox from './components/Search.vue';
+import VideoList from './components/VideoList.vue';
 import axios from "axios";
 
 const YOUTUBE_API_KEY = process.env.VUE_APP_API_KEY;
@@ -14,7 +16,13 @@ const YOUTUBE_API_KEY = process.env.VUE_APP_API_KEY;
 export default {
   name: 'App',
   components: {
-    SearchBox
+    SearchBox,
+    VideoList
+  },
+  data() {
+    return {
+      videos: []
+    }
   },
   methods: {
     termChanged(value) {
@@ -28,7 +36,7 @@ export default {
             }
           })
           .then(response => {
-            console.log(response.data.items);
+            this.videos = response.data.items;
           });
     }
   }
