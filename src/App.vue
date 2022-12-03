@@ -3,7 +3,11 @@
     <search-box @termChanged="termChanged"></search-box>
     <div class="container mx-auto flex justify-center mt-3 w-full">
       <div class="grid grid-cols-1 md:grid-cols-12 gap-2 md:gap-4 lg:gap-6 w-full">
-        <div class="text-green-500 text-lg font-bold rounded-lg col-span-8">Video Details</div>
+        <div class="text-lg font-bold rounded-lg col-span-8">
+          <div v-if="selectedVideo">
+            <VideoDetails :video="selectedVideo"></VideoDetails>
+          </div>
+        </div>
         <VideoList :videos="videos" @OnVideoSelect="videoSelect"></VideoList>
       </div>
     </div>
@@ -14,6 +18,7 @@
 import '@/assets/tailwind.css';
 import SearchBox from './components/Search.vue';
 import VideoList from './components/VideoList.vue';
+import VideoDetails from './components/VideoDetails.vue';
 import axios from "axios";
 
 const YOUTUBE_API_KEY = process.env.VUE_APP_API_KEY;
@@ -22,7 +27,8 @@ export default {
   name: 'App',
   components: {
     SearchBox,
-    VideoList
+    VideoList,
+    VideoDetails
   },
   data() {
     return {
